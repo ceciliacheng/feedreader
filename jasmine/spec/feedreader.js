@@ -107,9 +107,10 @@ $(function() {
     describe("New Feed Selection",function(){
       var firstUrl,lastUrl;
       beforeEach(function(done){
-        loadFeed(1, function () {
+        loadFeed(0, function () {
         firstUrl = $(".feed").html();
-        loadFeed(2,function(){
+        loadFeed(1,function(){
+          lastUrl = $(".feed").html();
           done();
         });
     });
@@ -119,7 +120,6 @@ $(function() {
     });
       });
       it("new feed is loaded by the loadFeed function",function(){
-        lastUrl = $(".feed").html();
         expect(firstUrl).not.toEqual(lastUrl);
       });
 }());
