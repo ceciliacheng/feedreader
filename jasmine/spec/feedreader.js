@@ -107,19 +107,18 @@ $(function() {
     describe("New Feed Selection",function(){
       var firstUrl,lastUrl;
       beforeEach(function(done){
-        loadFeed(0, function () {
-        firstUrl = $(".feed").html();
+        loadFeed(0,function(){
+          firstUrl = $(".feed").html();
+        });
         loadFeed(1,function(){
           lastUrl = $(".feed").html();
           done();
         });
-    });
+      });
       afterEach(function(){
         loadFeed(0);
-      });
-    });
       });
       it("new feed is loaded by the loadFeed function",function(){
         expect(firstUrl).not.toEqual(lastUrl);
       });
-}());
+    });
