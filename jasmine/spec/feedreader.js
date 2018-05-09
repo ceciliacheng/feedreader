@@ -104,21 +104,30 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-    describe("New Feed Selection",function(){
-      var firstUrl,lastUrl;
-      beforeEach(function(done){
-        loadFeed(0,function(){
-          firstUrl = $(".feed").html();
-        });
-        loadFeed(1,function(){
-          lastUrl = $(".feed").html();
-          done();
-        });
-      });
-      afterEach(function(){
-        loadFeed(0);
-      });
-      it("new feed is loaded by the loadFeed function",function(){
-        expect(firstUrl).not.toEqual(lastUrl);
-      });
-    });
+         describe('New Feed Selection', function() {
+     	    var firstUrl, secondUrl;
+
+             // loads the new feed via the loadFeed function
+     		beforeEach(function(done) {
+                 loadFeed(1, function() {
+                     // loads first entry and checks
+                     firstUrl = $('.feed').html();
+                     loadFeed(2, function() {
+                         done();
+                     });
+                 });
+              });
+
+     		afterEach(function() {
+                 loadFeed(0);
+             });
+
+             // tests to see if two entries are not equal
+     		it('checks if two feeds are different', function() {
+
+                 // checks second feed
+                 secondUrl = $('.feed').html();
+                 expect(firstUrl).not.toEqual(secondUrl);
+             });
+     	});
+     }());
