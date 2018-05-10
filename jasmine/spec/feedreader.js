@@ -88,10 +88,8 @@ $(function() {
          */
     describe("Initial Entries",function(){
       beforeEach(function(done){
-        loadFeed(3,function(){
-          done();
-        });
-      });
+        loadFeed(3,done);
+      },10 * 1000);
       it("loadFeed function is called and completes its work, and at least a single .entry element exist",function(done){
         expect($(".feed .entry").length).not.toEqual(0);
         done();
